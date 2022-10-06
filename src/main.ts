@@ -6,7 +6,7 @@ import express from 'express';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   await app.listen(3000);
-  app.use(file_upload());
+  //app.use(file_upload({useTempFiles:true}));
  
 }
 bootstrap();

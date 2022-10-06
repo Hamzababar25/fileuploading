@@ -1,6 +1,7 @@
 import { Controller, Get, Post, UploadedFile,UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor, FilesInterceptor} from '@nestjs/platform-express';
 import { AppService } from './app.service';
+import { UploadFile } from './utils/file-uploading.utils';
 
 @Controller()
 export class AppController {
@@ -12,10 +13,7 @@ export class AppController {
     FileInterceptor('image'),
   )
   async uploadedFile(@UploadedFile() file) {
-      const response = {
-        originalname: file.originalname,
-        filename: file.filename,
-      };
+      const response = await UploadFile(file)
       return response;
   }
 
